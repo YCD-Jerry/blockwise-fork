@@ -1,0 +1,75 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`frame rendering snapshot, end of the recording at 120x34 1`] = `
+" BLOCKWISE  [REPLAY]  [STAND-IN JUDGE]                   block 71750045  ·  gen 9  ·  10 of 10 complete  ·  chain 10143
+ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ POPULATION  gen 9  200 of 200 landed  gen best +618              LANDING  200 evals in 4 blocks
+   0  ░▒░░░░░░░░ ░▒░░░░░▒▓░ ▓░█▒▒▓█▒█▒ ▒▒▒▒▓▒▒▒█▒ ▒█▒██▓▒▒▒█      71750042 ███████████████████████████████████████   79
+  50  ▒▒▒▓░▒▒▒▓▒ ░▒▒▒▒▒▒▓░░ ▒▒▒▒▒▒▒▒▒█ █▒░▒▒▒▒░▒▓ ▒█▒░█▒░▒█▒      71750043 ████████████████████████   48
+ 100  ▒▒░▓▒▒▓▒▓░ ▒▒░▒░▓▒▒▒▒ ▒▒▒▓░▒▒▒▒█ ▒▒▒▓▒▒████ ▓▒▓██▒█▒██      71750044 ████████████████████   40
+ 150  ▓█▓▓███▒▒█ ▒█▒█▓▒▓▒█░ ▒▓▒▒░█▒▒░▒ ▒▓▒▒▒▒░▒▒▒ ▒▒░▒▒▒▓▒▒▓      71750045 ████████████████   33
+      · queued  ○ sent  ░▒▓█ landed, by dev  × reverted  ! lost   
+                                                                  NICHE MAP  dev of each niche elite
+ CHAMPION  gen 7 idx 182                                                      low       mid       high      
+   dev        +604   bp, the score it was searched on               reversion   +64 stl   +67 stl   +45 stl 
+   confirm    +242   -362 vs dev                                    neutral     +64 stl   +67 stl   +54 ris 
+   sealed     +145   one look, 9 trades                             momentum    +78 stl  +382 stl  +618 ldr 
+   random, 20 seeds: 1x +611, 2x +634                             
+ 
+ TOTALS  evals 1,999  ·  reverted 1  ·  lost 1  ·  gas 18.97 MON  ·  blocks 45  ·  judge stand-in $0.105
+ 
+ LAST TRANSACTIONS  explorer links
+    71750045  9:188      +64   93,321 gas   1.6 s  ok       explorer.example.invalid/tx/0x25080cf67151f20fdf39df97…6fd1
+    71750045  9:189      +67   92,468 gas   1.8 s  ok       explorer.example.invalid/tx/0x5ce62353340a32f00a70376e…bdc8
+    71750045  9:191       +5   97,829 gas   1.8 s  ok       explorer.example.invalid/tx/0xdda02a787ba4fac0ec719402…fde9
+    71750045  9:197      +45   94,257 gas   1.7 s  ok       explorer.example.invalid/tx/0x8d946ae3d6bc7ea8c6ffb2f0…1ea8
+     confirm  9:154     +242        7 trades           explorer.example.invalid/tx/0x67dde33de7afa5113485a67ca1161…20a6
+     confirm  9:171     +158        9 trades           explorer.example.invalid/tx/0xbb5b060ab33ca0a6acd67dc430c89…3c88
+     confirm  9:185      -10       10 trades           explorer.example.invalid/tx/0xbdaf20b7d3035be53bec8d4740821…0dff
+     confirm  9:99         0        0 trades           explorer.example.invalid/tx/0x498d7c44f5e222a3e228376f676b2…e13b
+     confirm  9:63         0        0 trades           explorer.example.invalid/tx/0xd4351f83187eeba988d02c74dce99…ea01
+     confirm  9:198        0        0 trades           explorer.example.invalid/tx/0xaa5109a94f0b3a8ee46cfb504003f…c75b
+     confirm  9:74        -5        2 trades           explorer.example.invalid/tx/0xb14dce2c34fde98278e832d362643…6bd4
+     sealed   7:182     +145        9 trades           explorer.example.invalid/tx/0x384fe0416e44e90ace121f2fdbe95…1d14
+ 
+ 
+ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ q quit                                                                                                     4225 events"
+`;
+
+exports[`frame rendering snapshot, mid generation at 120x34 1`] = `
+" BLOCKWISE  [REPLAY]  [STAND-IN JUDGE]                    block 71750006  ·  gen 1  ·  1 of 10 complete  ·  chain 10143
+ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ POPULATION  gen 1  69 of 200 landed  gen best +417               LANDING  69 evals in 2 blocks
+   0  ░░○░○░▓○░░ ░░░○▒░░○○░ ○▒░○○░░▓○░ ○░○░░○░░░█ ○░○░░▒○○○○      71750005 ███████████████████████████████████████   52
+  50  ○▒○○○○○○○○ ○○▒░○░○○○○ ○○○○○○○○○░ ○░○○○○○○○○ ○○○░○○○○▒░      71750006 █████████████   17
+ 100  ░○○▒○○○○░○ ░○○○░○○○○○ ○▓░○░○○○█░ ○░○○○░○○○░ ▓○█○○○○○○○      
+ 150  ░○○○○○○○○○ ░▓○░○○░○○○ ○○○○○○○○█░ ▒▓░░░○○○○○ ○○○○○○○░░○      NICHE MAP  dev of each niche elite
+      · queued  ○ sent  ░▒▓█ landed, by dev  × reverted  ! lost               low       mid       high      
+                                                                    reversion     0 yng   -69 yng   -22 yng 
+ CHAMPION  gen 0 idx 10  best confirm so far                        neutral       0 yng  -123 yng   -62 yng 
+   dev        +408   bp, the score it was searched on               momentum     +7 yng  +161 yng  +408 yng 
+   confirm    +132   -276 vs dev                                  
+   sealed   unopened   one look, spent once                       
+   random, 20 seeds: 1x +472.5, 2x +516.5                         
+ 
+ TOTALS  evals 269  ·  reverted 0  ·  lost 0  ·  gas 1.90 MON  ·  blocks 4  ·  judge stand-in $0.021
+ 
+ LAST TRANSACTIONS  explorer links
+    71750006  1:15         0   96,107 gas   0.8 s  ok       explorer.example.invalid/tx/0x3af01b0156feff3c9b7fd258…427c
+    71750006  1:19      -171   96,936 gas   0.9 s  ok       explorer.example.invalid/tx/0xb3f863ced273450378736eaf…6b33
+    71750006  1:26         0   96,356 gas   0.9 s  ok       explorer.example.invalid/tx/0xcacec80ac979e590ff17e5dc…0101
+    71750006  1:27      +270   96,152 gas   1.0 s  ok       explorer.example.invalid/tx/0xb7d03e9706aed27c10e6d4b2…9dd3
+    71750006  1:29       -81   93,675 gas   0.9 s  ok       explorer.example.invalid/tx/0x709654a2aa07a3668fb24a15…acd2
+    71750006  1:31       -69   95,698 gas   0.9 s  ok       explorer.example.invalid/tx/0xe41992745efe9fa28e2ed5ee…eeb3
+    71750006  1:33         0   92,620 gas   1.0 s  ok       explorer.example.invalid/tx/0xdbdaf8765376e81d1a17a6d9…a4c9
+    71750006  1:34       -49   97,979 gas   0.9 s  ok       explorer.example.invalid/tx/0xae4b9911031f25384622abd0…66a6
+    71750006  1:36       -34   95,980 gas   0.9 s  ok       explorer.example.invalid/tx/0x9e49c08814302477037b5c8f…55c6
+    71750006  1:39      +417   94,054 gas   1.1 s  ok       explorer.example.invalid/tx/0x9466743931582a372d144572…ebc2
+    71750006  1:44       -66   92,879 gas   0.9 s  ok       explorer.example.invalid/tx/0x529aab13a56488f579c15e97…a8b5
+    71750006  1:45      +106   92,308 gas   1.1 s  ok       explorer.example.invalid/tx/0x6cadd0c306143b19afaf4d75…d8cb
+ 
+ 
+ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ q quit                                                                                                      700 events"
+`;

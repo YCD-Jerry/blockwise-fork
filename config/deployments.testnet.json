@@ -1,0 +1,24 @@
+{
+  "chainId": 10143,
+  "network": "testnet",
+  "explorer": "https://testnet.monadvision.com",
+  "epoch": "0xa8e53e1e5e48b1497bbb0fae34c3414cb41c57cfb9d690728bc1493514efe0a0",
+  "deployer": "0xdcc0C91C8216675B22dEf12871E3e4b04e31EfF6",
+  "contracts": {
+    "ledger": "0xd969065bbba31acaba1fc77412edba536a950a72",
+    "evaluator": "0x1c62887bc176ee2270c21910e8c26ecc91a8c708",
+    "judgeLog": "0x6569c6579e850b6279c298c2722b682a711e095d"
+  },
+  "deployBlock": 71769889,
+  "txs": {
+    "ledger": "0x5faf17cec87a59491a2dca858ca8cd12e6115d1da83fad22d9ec8e1e4b6619ac",
+    "evaluator": "0xa238e8298b9098219c36a512d695bd68b4bcf226c8b3853fb2ee267b84d2d394",
+    "bind": "0x21be5a289041df5194a57269a1249ef6febbfe4ed93fffd2eb5e20b455591e20",
+    "judgeLog": "0x5f8945984e6055f6782ef1302a47fe0b254f55c3efa62bac92609002e767c53c"
+  },
+  "devEnd": 128,
+  "confirmEnd": 160,
+  "specVersion": 1,
+  "costBps": 3,
+  "deployedAt": "2026-10-17T08:09:54.050Z"
+}

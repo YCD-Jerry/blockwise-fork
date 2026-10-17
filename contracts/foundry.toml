@@ -13,3 +13,8 @@ fs_permissions = [{ access = "read", path = "../data" }]
 
 [profile.ci]
 fuzz = { runs = 512 }
+
+[invariant]
+runs = 256
+depth = 64
+fail_on_revert = true

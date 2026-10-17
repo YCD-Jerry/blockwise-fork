@@ -1,0 +1,7 @@
+{
+  "evaluate": 215000,
+  "confirm": 151000,
+  "sealed": 151000,
+  "measuredAt": "2026-10-17T09:05:00.000Z",
+  "rule": "eth_estimateGas on Monad testnet from the real proposer wallets. evaluate: 177k-183k x ~1.17 (kept). confirm: 122,254-125,695 (98 estimates) x 1.2 = 150.8k, rounded up to 151,000. sealed: 122,607-125,320 (40 estimates) x 1.2 = 150.4k, rounded up to 151,000. The earlier 110,000 guess (Foundry 58k x 1.9) ran out of gas on every confirm. NOTE: Monad receipts report gasUsed == gas limit, so receipt gasUsed is NOT a measurement; use eth_estimateGas."
+}

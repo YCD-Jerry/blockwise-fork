@@ -66,9 +66,9 @@ contract Evaluator {
 
     constructor(Ledger ledger_, int16[] memory returns_, uint16 devEnd_, uint16 confirmEnd_) {
         uint256 n = returns_.length;
-        if (
-            n > type(uint16).max || devEnd_ <= FIRST_EARN + LAGS || confirmEnd_ <= devEnd_ || confirmEnd_ + 1 >= n
-        ) revert BadSeries();
+        if (n > type(uint16).max || devEnd_ <= FIRST_EARN + LAGS || confirmEnd_ <= devEnd_ || confirmEnd_ + 1 >= n) {
+            revert BadSeries();
+        }
 
         ledger = ledger_;
         length = uint16(n);
@@ -139,7 +139,7 @@ contract Evaluator {
     function _bound(uint32 gen, uint32 idx, int16[7] calldata p) private view returns (bytes32 key) {
         _validate(p);
         key = _key(msg.sender, gen, idx);
-        (, , , , uint40 h, bool found) = ledger.getDev(key);
+        (,,,, uint40 h, bool found) = ledger.getDev(key);
         if (!found) revert NotRecorded();
         if (h != _hash40(p)) revert ParamsMismatch();
     }
@@ -152,23 +152,14 @@ contract Evaluator {
         if (p[6] < 0 || p[6] > THR_MAX) revert BadParam(6);
     }
 
-    function _loadReturns() private view returns (int256[] memory r) {
-        uint256 n = length;
-        r = new int256[](n);
-        uint256 words = _words.length;
-        for (uint256 w = 0; w < words; ++w) {
-            uint256 packed = _words[w];
-            for (uint256 j = 0; j < 16; ++j) {
-                uint256 i = w * 16 + j;
-                if (i >= n) break;
-                r[i] = int256(int16(uint16(packed >> (16 * j))));
-            }
-        }
+    /// @dev Reads one return straight from the packed words (no memory copy of the whole series).
+    function _r(uint256 i) private view returns (int256) {
+        return int256(int16(uint16(_words[i >> 4] >> ((i & 15) << 4))));
     }
 
     /// @dev Walk-forward over earn range [lo, hi): the decision at t uses r[t-5..t] and earns r[t+1].
+    /// Rolling window: a0 = r[t], a1 = r[t-1], ... a5 = r[t-5]; one new return is read per step.
     function _run(int16[7] calldata p, uint256 lo, uint256 hi) private view returns (int32 pnl, uint16 trades) {
-        int256[] memory r = _loadReturns();
         int256 w0 = p[0];
         int256 w1 = p[1];
         int256 w2 = p[2];
@@ -177,20 +168,42 @@ contract Evaluator {
         int256 w5 = p[5];
         int256 thr = p[6];
 
+        int256 a0 = _r(lo - 1);
+        int256 a1 = _r(lo - 2);
+        int256 a2 = _r(lo - 3);
+        int256 a3 = _r(lo - 4);
+        int256 a4 = _r(lo - 5);
+        int256 a5 = _r(lo - 6);
+
         int256 prev;
         int256 acc;
         uint256 count;
-        for (uint256 t = lo - 1; t + 1 < hi; ++t) {
-            int256 s = w0 * r[t] + w1 * r[t - 1] + w2 * r[t - 2] + w3 * r[t - 3] + w4 * r[t - 4] + w5 * r[t - 5];
-            int256 pos = s > thr ? int256(1) : (s < -thr ? int256(-1) : int256(0));
-            acc += pos * r[t + 1];
-            if (pos != prev) {
-                int256 d = pos - prev;
-                acc -= int256(uint256(COST_BPS)) * (d < 0 ? -d : d);
-                ++count;
-                prev = pos;
+        uint256 wi = type(uint256).max; // index of the cached packed word
+        uint256 cw;
+        unchecked {
+            for (uint256 e = lo; e < hi; ++e) {
+                int256 s = w0 * a0 + w1 * a1 + w2 * a2 + w3 * a3 + w4 * a4 + w5 * a5;
+                int256 pos = s > thr ? int256(1) : (s < -thr ? int256(-1) : int256(0));
+                if (e >> 4 != wi) {
+                    wi = e >> 4;
+                    cw = _words[wi]; // one SLOAD per 16 returns
+                }
+                int256 re = int256(int16(uint16(cw >> ((e & 15) << 4)))); // r[t+1], earned by the decision at t = e-1
+                acc += pos * re;
+                if (pos != prev) {
+                    int256 d = pos - prev;
+                    acc -= int256(uint256(COST_BPS)) * (d < 0 ? -d : d);
+                    ++count;
+                    prev = pos;
+                }
+                a5 = a4;
+                a4 = a3;
+                a3 = a2;
+                a2 = a1;
+                a1 = a0;
+                a0 = re;
             }
-        }
+        } // unchecked: |w|<=64, |r|<=32768, <=65535 steps, so every intermediate fits int256 with huge margin
         pnl = int32(acc);
         trades = uint16(count);
     }
